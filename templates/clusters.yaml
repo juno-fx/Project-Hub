@@ -2,12 +2,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ lower .code }}-{{ randAlphaNum 5 | quote }}
+  name: {{ lower .code }}-{{ randAlphaNum 5 | lower }}
   namespace: {{ $.Values.namespace }}
 
 spec:
   backoffLimit: 1
-
+  ttlSecondsAfterFinished: 10
   template:
     spec:
       nodeSelector:
