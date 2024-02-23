@@ -4,18 +4,18 @@ type: kubernetes.io/service-account-token
 metadata:
   name: cluster-builder-sa-token
   namespace: {{ .Values.namespace }}
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-    kubernetes.io/service-account.name: cluster-builder
+{{/*  annotations:*/}}
+{{/*    argocd.argoproj.io/hook: Sync*/}}
+{{/*    argocd.argoproj.io/hook-delete-policy: HookSucceeded*/}}
+{{/*    kubernetes.io/service-account.name: cluster-builder*/}}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: cluster-builder
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+{{/*  annotations:*/}}
+{{/*    argocd.argoproj.io/hook: Sync*/}}
+{{/*    argocd.argoproj.io/hook-delete-policy: HookSucceeded*/}}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
