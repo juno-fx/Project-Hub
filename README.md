@@ -28,3 +28,38 @@ projects:
                                           #   from external traffic. Essentially disabling the internet and all possible
                                           #   project cross talk.
 ```
+
+### ArgoCD Application
+
+Ideally, you will use an Application in ArgoCD to deploy the Project Hub. Below is an example of how to set one up.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: project-hub
+  namespace: argocd
+spec:
+  project: <your project>
+  destination:
+    server: <target cluster>
+    namespace: argocd
+  
+  # We use the multi source approach to allow for the use of a private values repo
+  # https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/
+  sources:
+    - path: .
+      repoURL: https://github.com/juno-fx/Project-Hub.git
+      targetRevision: <the version of Project Hub you want to use>
+      helm:
+        valueFiles:
+          - $values/projects.yaml
+
+    - repoURL: https://<your values repo>.git
+      targetRevision: <branch>
+      ref: values
+```
+
+Once this completes, you should have a dedicated [vcluster](https://vcluster.com/) for each project. This will allow for 
+the isolation of each project and the ability to scale them independently. From here, you can begin to deploy other Juno
+services to the project cluster using ApplicationSets in ArgoCD.
