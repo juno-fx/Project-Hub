@@ -1,9 +1,9 @@
-registry: aldmbmtl    # name of the container registry to pull the Cluster-Builder from
-
+image: aldmbmtl/cluster-builder:v0.0.1    # name of the container registry to pull the Cluster-Builder from
+namespace: argocd                         # namespace to deploy the Cluster-Builder to. Needs to be the same as where Argo is
 
 projects:
-#  - code:            # name, this is what it will be called in ArgoCD
-#    active:          # active, specifies it the project should be deployed or "put to sleep"
-#    private:         # private, allows for NetworkPolicies to be created to isolate the project
-                      #   from external traffic. Essentially disabling the internet and all possible
-                      #   project cross talk.
+#  - code:                                # name, this is what it will be called in ArgoCD
+#    active:                              # active, specifies it the project should be deployed or "put to sleep"
+#    private:                             # private, allows for NetworkPolicies to be created to isolate the project
+                                          #   from external traffic. Essentially disabling the internet and all possible
+                                          #   project cross talk.

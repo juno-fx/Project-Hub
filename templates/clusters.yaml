@@ -1,0 +1,32 @@
+{{- range .Values.projects }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ lower .code }}
+  namespace: {{ $.Values.namespace }}
+
+spec:
+  backoffLimit: 3
+
+  template:
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      restartPolicy: Never
+      serviceAccountName: cluster-builder
+      containers:
+        - name: {{ lower .code }}
+          image: {{ $.Values.image }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- if .active }}
+            - name: ACTION
+              value: "install"
+            {{- else }}
+            - name: ACTION
+              value: "uninstall"
+            {{- end }}
+            - name: NAME
+              value: {{ lower .code }}
+---
+{{- end }}
