@@ -4,7 +4,9 @@ kind: Job
 metadata:
   name: {{ lower .code }}-{{ randAlphaNum 5 | lower }}
   namespace: {{ $.Values.namespace }}
-
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   backoffLimit: 1
   template:
