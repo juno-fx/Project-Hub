@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ lower .code }}-{{- randAlphaNum 24 | nospace -}}
+  name: {{ lower .code }}-{{ randAlphaNum 5 | quote }}
   namespace: {{ $.Values.namespace }}
 
 spec:
