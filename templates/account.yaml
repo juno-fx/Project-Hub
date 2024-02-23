@@ -3,7 +3,3 @@ kind: ServiceAccount
 metadata:
   name: cluster-builder
   namespace: {{ .Values.namespace }}
-{{/*  annotations:*/}}
-{{/*    argocd.argoproj.io/hook: Sync*/}}
-{{/*    argocd.argoproj.io/hook-delete-policy: HookSucceeded*/}}
-{{/*    kubernetes.io/service-account.name: cluster-builder*/}}
