@@ -17,7 +17,7 @@ spec:
       targetRevision: testing-setup
       helm:
         valueFiles:
-          - $values/juno/project-hub.yaml
+          - $values/juno/test-values.yaml
 
     - repoURL: https://github.com/juno-fx/Project-Hub.git
       targetRevision: testing-setup
