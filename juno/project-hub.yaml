@@ -22,3 +22,12 @@ spec:
     - repoURL: https://github.com/juno-fx/Project-Hub.git
       targetRevision: testing-setup
       ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+    syncOptions:
+      - CreateNamespace=true

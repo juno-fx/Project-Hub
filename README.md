@@ -58,6 +58,15 @@ spec:
     - repoURL: https://<your values repo>.git
       targetRevision: <branch>
       ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+    syncOptions:
+      - CreateNamespace=true
 ```
 
 Once this completes, you should have a dedicated [vcluster](https://vcluster.com/) for each project. This will allow for 
@@ -75,3 +84,15 @@ You MUST have the following installed to run the development environment.
 - [make](https://www.gnu.org/software/make/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [helm](https://helm.sh/)
+
+### Helm Local Deployment
+
+```bash
+make test
+```
+
+### Simulate Remote Values Deployment
+
+```bash
+make ref-test
+```

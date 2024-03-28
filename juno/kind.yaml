@@ -6,6 +6,9 @@ nodes:
       junovfx/node: service
       ingress-ready: "true"
     extraPortMappings:
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
       - containerPort: 30900
         hostPort: 30900
         protocol: TCP
