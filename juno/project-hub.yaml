@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: project-hub
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  # We use the multi source approach to allow for the use of a private values repo
+  # https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/
+  sources:
+    - path: .
+      repoURL: https://github.com/juno-fx/Project-Hub.git
+      targetRevision: testing-setup
+      helm:
+        valueFiles:
+          - $values/juno/test-values.yaml
+
+    - repoURL: https://github.com/juno-fx/Project-Hub.git
+      targetRevision: testing-setup
+      ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+    syncOptions:
+      - CreateNamespace=true

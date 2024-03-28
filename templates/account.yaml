@@ -3,3 +3,5 @@ kind: ServiceAccount
 metadata:
   name: cluster-builder
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/hook: PreSync

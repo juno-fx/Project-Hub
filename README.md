@@ -58,8 +58,41 @@ spec:
     - repoURL: https://<your values repo>.git
       targetRevision: <branch>
       ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+    syncOptions:
+      - CreateNamespace=true
 ```
 
 Once this completes, you should have a dedicated [vcluster](https://vcluster.com/) for each project. This will allow for 
 the isolation of each project and the ability to scale them independently. From here, you can begin to deploy other Juno
 services to the project cluster using ApplicationSets in ArgoCD.
+
+## Local Testing
+
+### Prerequisites
+
+You MUST have the following installed to run the development environment.
+
+- [Docker](https://www.docker.com/)
+- [kind](https://kind.sigs.k8s.io/)
+- [make](https://www.gnu.org/software/make/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [helm](https://helm.sh/)
+
+### Helm Local Deployment
+
+```bash
+make test
+```
+
+### Simulate Remote Values Deployment
+
+```bash
+make ref-test
+```
