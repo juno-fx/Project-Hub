@@ -1,11 +1,12 @@
 {{- range .Values.projects }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ lower .code }}
   namespace: {{ $.Values.namespace }}
   annotations:
-    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   backoffLimit: 1
@@ -29,5 +30,38 @@ spec:
             {{- end }}
             - name: NAME
               value: {{ lower .code }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ lower .code }}-harness
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  sources:
+    - path: .
+      repoURL: {{ .repo }}
+      targetRevision: {{ .branch }}
+      helm:
+        parameters:
+          - name: cluster
+            value: https://{{ lower .code }}.{{ lower .code }}.svc.cluster.local
+          - name: show
+            value: {{ lower .code }}
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+
+    syncOptions:
+      - CreateNamespace=true
 ---
 {{- end }}

@@ -1,0 +1,15 @@
+image: aldmbmtl/cluster-builder:v0.0.1
+namespace: argocd
+
+projects:
+  - code: SQM
+    active: "false"
+    private: "false"
+    repo: https://github.com/juno-fx/Orion-Deployment.git
+    branch: testing
+
+  - code: RPM
+    active: "false"
+    private: "false"
+    repo: https://github.com/juno-fx/Orion-Deployment.git
+    branch: testing

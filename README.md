@@ -63,3 +63,15 @@ spec:
 Once this completes, you should have a dedicated [vcluster](https://vcluster.com/) for each project. This will allow for 
 the isolation of each project and the ability to scale them independently. From here, you can begin to deploy other Juno
 services to the project cluster using ApplicationSets in ArgoCD.
+
+## Local Testing
+
+### Prerequisites
+
+You MUST have the following installed to run the development environment.
+
+- [Docker](https://www.docker.com/)
+- [kind](https://kind.sigs.k8s.io/)
+- [make](https://www.gnu.org/software/make/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [helm](https://helm.sh/)
