@@ -34,14 +34,14 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ lower .code }}-harness
+  name: {{ lower .code }}
   namespace: argocd
   annotations:
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook: Sync
 spec:
   project: default
   destination:
-    server: https://kubernetes.default.svc
+    server: https://{{ lower .code }}.{{ lower .code }}.svc.cluster.local
     namespace: argocd
 
   sources:
@@ -50,10 +50,14 @@ spec:
       targetRevision: {{ .branch }}
       helm:
         parameters:
-          - name: cluster
-            value: https://{{ lower .code }}.{{ lower .code }}.svc.cluster.local
           - name: show
             value: {{ lower .code }}
+        valueFiles:
+          - $values/{{ .values.file }}
+
+    - repoURL: {{ .values.repo }}
+      targetRevision: {{ .values.branch }}
+      ref: values
 
   syncPolicy:
     automated:

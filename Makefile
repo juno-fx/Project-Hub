@@ -9,9 +9,11 @@ down:
 	@kind delete cluster --name $(PROJECT)
 
 # testing
+ref-test: down cluster ref-dependencies
 test: down cluster dependencies
 
 # dependencies
+ref-dependencies: ingress argo project-hub-ref argo-credentials
 dependencies: ingress argo project-hub argo-credentials
 
 ingress:
@@ -32,6 +34,10 @@ argo:
 		--selector=app.kubernetes.io/name=argocd-server \
 		--timeout=90s > /dev/null 2>&1
 	@kubectl -n argocd apply -f juno/argo-service.yaml
+
+project-hub-ref:
+	@echo "Installing Project Hub..."
+	@kubectl apply -f juno/project-hub.yaml
 
 project-hub:
 	@echo "Installing Project Hub..."
