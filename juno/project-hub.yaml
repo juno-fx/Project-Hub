@@ -14,13 +14,13 @@ spec:
   sources:
     - path: .
       repoURL: https://github.com/juno-fx/Project-Hub.git
-      targetRevision: testing-setup
+      targetRevision: main
       helm:
         valueFiles:
           - $values/juno/test-values.yaml
 
     - repoURL: https://github.com/juno-fx/Project-Hub.git
-      targetRevision: testing-setup
+      targetRevision: main
       ref: values
 
   syncPolicy:
