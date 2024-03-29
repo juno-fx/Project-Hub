@@ -21,13 +21,3 @@ projects:
       repo: https://github.com/juno-fx/Orion-Deployment.git
       branch: main
       file: values.yaml
-
-  - code: ALKS
-    active: true
-    private: false
-    repo: https://github.com/juno-fx/Orion-Deployment.git
-    branch: main
-    values:
-      repo: https://github.com/juno-fx/Orion-Deployment.git
-      branch: main
-      file: values.yaml
