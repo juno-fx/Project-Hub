@@ -10,7 +10,8 @@ projects:
     values:
       repo: https://github.com/juno-fx/Orion-Deployment.git
       branch: main
-      file: values.yaml
+      files:
+        - values.yaml
 
   - code: RPM
     active: true
@@ -20,4 +21,6 @@ projects:
     values:
       repo: https://github.com/juno-fx/Orion-Deployment.git
       branch: main
-      file: values.yaml
+      files:
+        - values.yaml
+        - blah.yaml

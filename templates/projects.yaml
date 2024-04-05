@@ -51,7 +51,9 @@ spec:
           - name: show
             value: {{ lower .code }}
         valueFiles:
-          - $values/{{ .values.file }}
+          {{- range .values.files }}
+          - $values/{{ . }}
+          {{- end }}
 
     - repoURL: {{ .values.repo }}
       targetRevision: {{ .values.branch }}
