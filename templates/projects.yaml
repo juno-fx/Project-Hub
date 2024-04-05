@@ -44,6 +44,16 @@ spec:
     namespace: argocd
 
   sources:
+    {{- range .addons }}
+    - path: .
+      repoURL: {{ .repo }}
+      targetRevision: {{ .branch }}
+      helm:
+        valueFiles:
+          {{- range .valuesFiles }}
+          - $values/{{ . }}
+          {{- end }}
+    {{- end }}
     - path: .
       repoURL: {{ .repo }}
       targetRevision: {{ .branch }}

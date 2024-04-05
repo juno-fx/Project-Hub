@@ -14,3 +14,8 @@ projects:
       branch:                                               # the branch to pull the values from
       files:
         - values.yaml                                       # the file to pull the values from
+    addons:
+      - repo:                                               # repo, the git repository to pull the addon from
+        branch:                                             # branch, the branch to pull the addon from
+        valuesFiles:
+          - values.yaml                                     # the file to pull the values from
