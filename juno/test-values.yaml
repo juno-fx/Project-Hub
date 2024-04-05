@@ -23,4 +23,3 @@ projects:
       branch: main
       files:
         - values.yaml
-        - blah.yaml
