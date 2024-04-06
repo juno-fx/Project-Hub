@@ -45,7 +45,7 @@ spec:
 
   sources:
     {{- range .addons }}
-    - path: .
+    - path: {{ .directory }}
       repoURL: {{ .repo }}
       targetRevision: {{ .branch }}
       helm:
