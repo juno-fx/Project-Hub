@@ -73,9 +73,9 @@ spec:
         parameters:
           - name: show
             value: {{ lower .code }}
-          {{- range $extra }}
-          - name: {{ . }}
-            value: {{ . }}
+          {{- range $key, $value := $.Values.extra }}
+          - name: {{ $key }}
+            value: {{ $value }}
           {{- end }}
         valueFiles:
           {{- range .values.files }}
