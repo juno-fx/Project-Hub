@@ -44,7 +44,7 @@ spec:
     namespace: default
 
   sources:
-    {{- $extra := .extra }}
+    {{- $extra := $.Values.extra }}
     {{- range .addons }}
     - path: .
       repoURL: {{ .repo }}
