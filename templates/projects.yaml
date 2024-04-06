@@ -44,16 +44,15 @@ spec:
     namespace: default
 
   sources:
-    {{- $extra := $.Values.extra }}
     {{- range .addons }}
     - path: .
       repoURL: {{ .repo }}
       targetRevision: {{ .branch }}
       helm:
         parameters:
-          {{- range $extra }}
-            - name: {{ .name }}
-              value: {{ .value }}
+          {{- range $key, $value := $.Values.extra }}
+            - name: {{ $key }}
+              value: {{ $value }}
           {{- end }}
         valueFiles:
           {{- range .valuesFiles }}
