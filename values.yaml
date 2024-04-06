@@ -19,3 +19,7 @@ projects:
         branch:                                             # branch, the branch to pull the addon from
         valuesFiles:
           - values.yaml                                     # the file to pull the values from
+    manifests:
+      - repo:                                               # repo, the git repository to pull the manifests from
+        branch:                                             # branch, the branch to pull the manifests from
+        directory:                                          # directory, the directory to pull the manifests from

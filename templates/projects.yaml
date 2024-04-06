@@ -54,6 +54,13 @@ spec:
           - $values/{{ . }}
           {{- end }}
     {{- end }}
+    {{- range .manifests }}
+    - path: {{ .directory }}
+      repoURL: {{ .repo }}
+      targetRevision: {{ .branch }}
+      directory:
+        recurse: true
+    {{- end }}
     - path: .
       repoURL: {{ .repo }}
       targetRevision: {{ .branch }}
