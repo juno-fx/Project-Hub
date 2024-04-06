@@ -86,7 +86,6 @@ spec:
     - repoURL: {{ .values.repo }}
       targetRevision: {{ .values.branch }}
       ref: values
-    {{- end }}
   syncPolicy:
     automated:
       prune: true
