@@ -41,7 +41,7 @@ spec:
   project: default
   destination:
     server: https://{{ lower .code }}.{{ lower .code }}.svc.cluster.local
-    namespace: argocd
+    namespace: default
 
   sources:
     {{- range .addons }}
