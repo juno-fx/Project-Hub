@@ -52,8 +52,8 @@ spec:
       helm:
         parameters:
           {{- range $extra }}
-            - name: {{ . }}
-              value: {{ . }}
+            - name: {{ .name }}
+              value: {{ .value }}
           {{- end }}
         valueFiles:
           {{- range .valuesFiles }}

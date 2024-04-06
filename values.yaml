@@ -2,7 +2,7 @@ image: aldmbmtl/cluster-builder:v0.0.1                      # name of the contai
 namespace: argocd                                           # namespace to deploy the Cluster-Builder to. Needs to be the same as where Argo is
 
 extra:                                                      # extra, additional information to be passed to the Cluster-Builder
-  - key:                                                   # key, the key of the extra information
+  - name:                                                   # key, the key of the extra information
     value:                                                 # value, the value of the extra information
 
 projects:
