@@ -44,11 +44,17 @@ spec:
     namespace: default
 
   sources:
+    {{- $extra := .extra }}
     {{- range .addons }}
     - path: .
       repoURL: {{ .repo }}
       targetRevision: {{ .branch }}
       helm:
+        parameters:
+          {{- range $extra }}
+            - name: {{ . }}
+              value: {{ . }}
+          {{- end }}
         valueFiles:
           {{- range .valuesFiles }}
           - $values/{{ . }}
@@ -68,6 +74,10 @@ spec:
         parameters:
           - name: show
             value: {{ lower .code }}
+          {{- range $extra }}
+          - name: {{ . }}
+            value: {{ . }}
+          {{- end }}
         valueFiles:
           {{- range .values.files }}
           - $values/{{ . }}
@@ -76,7 +86,7 @@ spec:
     - repoURL: {{ .values.repo }}
       targetRevision: {{ .values.branch }}
       ref: values
-
+    {{- end }}
   syncPolicy:
     automated:
       prune: true
